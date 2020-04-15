@@ -10,9 +10,9 @@ router.get("/signin", function (req, res) {
   res.render("signin.handlebars");
 });
 
-router.get("/", (req, res) => {
-  res.send(req.isAuthenticated() ? "Logged in" : "Logged out");
-});
+// router.get("/", (req, res) => {
+//   res.send(req.isAuthenticated() ? "Logged in" : "Logged out");
+// });
 
 router.get("/list", function (req, res) {
   const hhID = 1; //dynamic later
@@ -31,7 +31,6 @@ router.get("/", function (req, res) {
     var hbsObject = {
       Item: response,
       user: req.user
-
     };
     res.render("index.handlebars", hbsObject);
   });

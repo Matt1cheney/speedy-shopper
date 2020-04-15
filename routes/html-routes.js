@@ -30,6 +30,7 @@ router.get("/", function (req, res) {
   groceryCont.allItems().then((response) => {
     var hbsObject = {
       Item: response,
+      user: req.user.profile
     };
     res.render("index.handlebars", hbsObject);
   });

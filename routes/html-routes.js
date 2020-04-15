@@ -10,16 +10,16 @@ router.get("/signin", function (req, res) {
   res.render("signin.handlebars");
 });
 
-// router.get("/", (req, res) => {
-//   res.send(req.isAuthenticated() ? "Logged in" : "Logged out");
-// });
+router.get("/", (req, res) => {
+  res.send(req.isAuthenticated() ? "Logged in" : "Logged out");
+});
 
 router.get("/list", function (req, res) {
   const hhID = 1; //dynamic later
   groceryCont.allByHousehold(hhID).then((response) => {
     var hbsObject = {
       listItem: response,
-      user: req.user.profile
+      user: req.user.profile,
     };
     console.log(response);
     res.render("list.handlebars", hbsObject);
@@ -30,7 +30,7 @@ router.get("/", function (req, res) {
   groceryCont.allItems().then((response) => {
     var hbsObject = {
       Item: response,
-      user: req.user.profile
+      user: req.user.profile,
     };
     res.render("index.handlebars", hbsObject);
   });
@@ -40,7 +40,7 @@ router.get("/edit", function (req, res) {
   groceryCont.allItems().then((response) => {
     var hbsObject = {
       Item: response,
-      user: req.user.profile
+      user: req.user.profile,
     };
     res.render("index.handlebars", hbsObject);
   });

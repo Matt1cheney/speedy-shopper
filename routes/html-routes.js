@@ -19,7 +19,7 @@ router.get("/list", function (req, res) {
   groceryCont.allByHousehold(hhID).then((response) => {
     var hbsObject = {
       listItem: response,
-      user: req.user.profile,
+      user: req.user,
     };
     console.log(response);
     res.render("list.handlebars", hbsObject);
@@ -30,17 +30,19 @@ router.get("/", function (req, res) {
   groceryCont.allItems().then((response) => {
     var hbsObject = {
       Item: response,
-      user: req.user.profile,
+      user: req.user
+
     };
     res.render("index.handlebars", hbsObject);
   });
 });
 
 router.get("/edit", function (req, res) {
+  console.log(req.user.nickname);
   groceryCont.allItems().then((response) => {
     var hbsObject = {
       Item: response,
-      user: req.user.profile,
+      user: req.user,
     };
     res.render("index.handlebars", hbsObject);
   });
